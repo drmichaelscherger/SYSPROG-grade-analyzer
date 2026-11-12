@@ -1,3 +1,4 @@
+// Mike Scherger
 /*
  * Grade Analyzer
  *
