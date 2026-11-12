@@ -2,15 +2,26 @@
 # Grade Analyzer Makefile
 #######
 
+.PHONY: clean run
 
-grade-analyzer: grade-analyzer.o
-	gcc -o grade-analyzer grade-analyzer.o -lm
+grade-analyzer: main.o grade.o statistics.o
+	gcc -o grade-analyzer main.o grade.o statistics.o -lm
 
 
 
-grade-analyzer.o: grade-analyzer.c
-	gcc -c grade-analyzer.c
+main.o: main.c
+	gcc -c main.c
+
+grade.o: grade.c
+	gcc -c grade.c
+
+statistics.o: statistics.c
+	gcc -c statistics.c
+
+
+run:
+	./grade-analyzer sample-grades.csv
 
 
 clean:
-	/bin/rm -f grade-analyzer.o grade-analyzer
+	/bin/rm -f main.o grade.o statistics.o grade-analyzer
