@@ -2,21 +2,29 @@
 # Grade Analyzer Makefile
 #######
 
+CC = gcc
+CCFLAGS = -c -O2
+LIBS = -lm
+RM = /bin/rm
+
+OBJS = main.o grade.o statistics.o
+
+
 .PHONY: clean run
 
-grade-analyzer: main.o grade.o statistics.o
-	gcc -o grade-analyzer main.o grade.o statistics.o -lm
+grade-analyzer: $(OBJS)
+	$(CC) -o grade-analyzer $(OBJS) $(LIBS)
 
 
 
 main.o: main.c
-	gcc -c main.c
+	$(CC) $(CCFLAGS) main.c
 
 grade.o: grade.c
-	gcc -c grade.c
+	$(CC) $(CCFLAGS) grade.c
 
 statistics.o: statistics.c
-	gcc -c statistics.c
+	$(CC) $(CCFLAGS) statistics.c
 
 
 run:
@@ -24,4 +32,4 @@ run:
 
 
 clean:
-	/bin/rm -f main.o grade.o statistics.o grade-analyzer
+	$(RM) -f main.o grade.o statistics.o grade-analyzer
